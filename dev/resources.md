@@ -9,6 +9,7 @@
 * [COMFUSY](http://lara.epfl.ch/web2010/comfusy)
 * [Java PathFinder](http://babelfish.arc.nasa.gov/trac/jpf)
 * [Bogor](http://bogor.projects.cis.ksu.edu/)
+* [bddbddb](http://bddbddb.sourceforge.net/)
 
 ## JVM books ##
 * [Java Virtual Machine Specification, 2nd edition](http://java.sun.com/docs/books/jvms/)
