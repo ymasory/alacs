@@ -27,5 +27,8 @@
 * [Data-Flow Analysis](http://www.amazon.com/Data-Flow-Analysis-Theory-Practice/dp/0849328802/)
 
 ## papers ##
-* [Encoding Scala Programs for the Boogie Verifier](http://www.pm.inf.ethz.ch/education/theses/student_docs/Valentin_Wuestholz/MA_report.pdf)
-* [State Exploration of Scala Actor Programs](http://mir.cs.illinois.edu/~marinov/publications/Dotta09MS-EPFL.pdf)
+* [Encoding Scala programs for the Boogie verifier](http://www.pm.inf.ethz.ch/education/theses/student_docs/Valentin_Wuestholz/MA_report.pdf)
+* [State exploration of Scala actor programs](http://mir.cs.illinois.edu/~marinov/publications/Dotta09MS-EPFL.pdf)
+* [On static analysis for expressive pattern matching](http://lara.epfl.ch/~psuter/articles/DottaETALOnStaticAnalysis.pdf)
+* [Static type analysis of pattern matching by abstract interpretation](http://people.inf.ethz.ch/lehnerh/pm/publications/getpdf.php?bibname=Own&id=Ferrara10.pdf)
+* [On satisfiability modulo computable functions](http://infoscience.epfl.ch/record/161285/files/OnSatisfiabilityModuloComputableFunctions.pdf)
