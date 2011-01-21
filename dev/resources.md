@@ -8,6 +8,7 @@
 * [On satisfiability modulo computable functions](http://infoscience.epfl.ch/record/161285/files/OnSatisfiabilityModuloComputableFunctions.pdf)
 
 ## existing programs ##
+* [scalapatterns](http://code.google.com/p/scalapatterns/)
 * [FindBugs manual](http://findbugs.sourceforge.net/manual/index.html)
 * [Watson Libraries for Analysis](http://wala.sourceforge.net/wiki/index.php/Main_Page)
 * [Apache BCEL manual](http://jakarta.apache.org/bcel/manual.html)
