@@ -39,7 +39,7 @@ class AlacsPlugin(val global: Global) extends Plugin {
     
     tree match {
       
-      case _ => report
+      case _ => report.copy(Bug(0) :: report.bugs)
     }
   }
 }

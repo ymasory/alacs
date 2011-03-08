@@ -8,7 +8,7 @@ case class BugReport (bugs: List[Bug]) {
   val report  = {
     LF +
     "REPORT" + LF +
-    "------" + LF + bugs.map(_.bugId + LF) + LF
+    "------" + LF + bugs.map(_.bugId).mkString(LF) + LF
   }
 }
 
@@ -23,8 +23,18 @@ case object BugReport {
   def parse(in: List[String]): BugReport = {
     var curReport = EmptyReport
     for (line <- in) {
+      println("LINE: " + line)
+      try {
+        println(line.toInt)
+        println("SUCCESS")
+      }
+      catch {
+        case _ => println("FAIL")
+      }
+      
       val els = line.split("\\s")
       curReport = els.head match {
+        
         case _ => curReport
       }
     }
@@ -37,6 +47,8 @@ case object BugReport {
                     "-Xplugin:" + pluginLoc,
                     testPrefix + fileName)
     val (stdout, stderr, ret) = call(cmd)
+    println("STDOUT: " + stdout)
+    println("STDERR: " + stdout)
     if (ret != 0) throw ScalacExitCodeException(ret, stderr.mkString(" "))
     parse(stdout)
   }

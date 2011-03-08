@@ -1,4 +1,4 @@
 <plugin>
   <name>alacs</name>
-  <classname>com.github.alacscala.alacs</classname>
+  <classname>com.github.alacscala.alacs.AlacsPlugin</classname>
 </plugin>
