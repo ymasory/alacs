@@ -2,13 +2,13 @@ package com.github.alacscala.alacs
 
 case class Bug(bugId: Int)
 
-case class BugReport (bugs: List[Bug]) {
+case class BugReport(bugs: List[Bug]) {
 
   val LF = "\n"
-  val report  = {
+  val report = {
     LF +
-    "REPORT" + LF +
-    "------" + LF + bugs.map(_.bugId).mkString(LF) + LF
+      "REPORT" + LF +
+      "------" + LF + bugs.map(_.bugId).mkString(LF) + LF
   }
 }
 
@@ -22,8 +22,7 @@ case object BugReport {
       try {
         val bugId = line.toInt
         curReport = curReport.copy(Bug(bugId) :: curReport.bugs)
-      }
-      catch {
+      } catch {
         case _ =>
       }
     }
