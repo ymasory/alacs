@@ -37,6 +37,10 @@ class AlacsPlugin(val global: Global) extends Plugin {
     def info(msg: String) = global.reporter.info(tree.pos, msg, true)
     
     tree match {
+      case DefDef(mods, name, tparams, vparamss, tpt, rhs) => {
+        info(tree.children.toString)
+        report
+      }
       
       case _ => report
     }
