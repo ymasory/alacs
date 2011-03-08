@@ -17,25 +17,18 @@ case object BugReport {
   val EmptyReport = BugReport(List.empty[Bug])
 
   val curDir = (new java.io.File(".")).getCanonicalPath
-  val pluginLoc = curDir + "/target/scala_2.8.1/alacs-alpha.jar"
+  val pluginLoc = curDir + "/target/scala_2.8.0/alacs-alpha.jar"
   val testPrefix = curDir + "/src/test/resources/"
 
   def parse(in: List[String]): BugReport = {
     var curReport = EmptyReport
     for (line <- in) {
-      println("LINE: " + line)
       try {
-        println(line.toInt)
-        println("SUCCESS")
+        val bugId = line.toInt
+        curReport = curReport.copy(Bug(bugId) :: curReport.bugs)
       }
       catch {
-        case _ => println("FAIL")
-      }
-      
-      val els = line.split("\\s")
-      curReport = els.head match {
-        
-        case _ => curReport
+        case _ =>
       }
     }
     curReport
@@ -47,8 +40,6 @@ case object BugReport {
                     "-Xplugin:" + pluginLoc,
                     testPrefix + fileName)
     val (stdout, stderr, ret) = call(cmd)
-    println("STDOUT: " + stdout)
-    println("STDERR: " + stdout)
     if (ret != 0) throw ScalacExitCodeException(ret, stderr.mkString(" "))
     parse(stdout)
   }
