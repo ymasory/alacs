@@ -15,7 +15,7 @@
 * [FindBugs manual](http://findbugs.sourceforge.net/manual/index.html)
 * [ClassUtil](http://software.clapper.org/classutil/)
 
-## Scala source level static analysis tools ##
+## Scala source-level static analysis tools ##
 * [scalapatterns](http://code.google.com/p/scalapatterns/)
 * [ENSIME](https://github.com/aemoncannon/ensime)
 * [Scala Refactoring](http://www.assembla.com/code/scala-refactoring/git/nodes?rev=master)
