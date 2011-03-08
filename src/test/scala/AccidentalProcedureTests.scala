@@ -8,7 +8,7 @@ class AccidentalProcedure extends FunSuite {
     val expected = BugReport(List(Bug(1)))
 
     expect(expected) {
-      BugReport.runPlugin(
+      RunPlugin.runPlugin(
         "001-accidental-procedure/MissingEqualsStringLiteral.scala")
     }
   }
@@ -17,7 +17,7 @@ class AccidentalProcedure extends FunSuite {
     val expected = BugReport.EmptyReport
 
     expect(expected) {
-      BugReport.runPlugin(
+      RunPlugin.runPlugin(
         "001-accidental-procedure/NotMissingEqualsStringLiteral.scala")
     }
   }

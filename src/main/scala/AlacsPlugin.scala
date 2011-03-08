@@ -24,7 +24,6 @@ class AlacsPlugin(val global: Global) extends Plugin {
       override def name = "alacs phase"
       override def apply(unit: CompilationUnit) {
 
-        //iterate over every subtree in the body of the compilation unit
         var curReport = BugReport.EmptyReport
         for (tree <- unit.body) {
           curReport = analyzeTree(tree, curReport)

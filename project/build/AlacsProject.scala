@@ -16,11 +16,13 @@ class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   val extraResources = "README.md" +++ "LICENSE"
   override val mainResources = super.mainResources +++ extraResources
 
-  //turn down logging level to 'warn'
+  //turn down logging a little
   log.setLevel(Level.Warn)
+  log.setTrace(2)
 
   //compiler options
-  super.compileOptions ++ Seq("-deprecation", "-unchecked").map(CompileOption(_))
+  override def compileOptions = super.compileOptions ++ Seq("-deprecation", "-unchecked").map(CompileOption(_))
+  // override def testOptions = super.testOptions ++ Seq((TestFrameworks.ScalaTest, "-Dcp="+buildLibraryJar))
   override def javaCompileOptions = JavaCompileOption("-Xlint:unchecked") :: super.javaCompileOptions.toList
 
   //scaladoc options
