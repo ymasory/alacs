@@ -29,6 +29,7 @@ class AlacsPlugin(val global: Global) extends Plugin {
           curReport = analyzeTree(tree, curReport)
         }
         println("\n" + curReport.report)
+        global.currentRun.cancel
       }
     }
   }
