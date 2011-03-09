@@ -21,9 +21,7 @@ class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   log.setTrace(2)
 
   //compiler options
-  override def compileOptions = super.compileOptions ++ Seq("-deprecation", "-unchecked").map(CompileOption(_))
-  // override def testOptions = super.testOptions ++ Seq((TestFrameworks.ScalaTest, "-Dcp="+buildLibraryJar))
-  override def javaCompileOptions = JavaCompileOption("-Xlint:unchecked") :: super.javaCompileOptions.toList
+  override def compileOptions = super.compileOptions ++ compileOptions("-deprecation", "-unchecked")
 
   //scaladoc options
   override def documentOptions =

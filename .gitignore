@@ -3,4 +3,4 @@ lib_managed/
 src_managed/
 project/boot/
 *~
-
+*.class
