@@ -12,14 +12,14 @@ class AlacsPlugin(val global: Global) extends Plugin {
   override val name = "alacs"
   override val description = "finds bugs, hopefully"
   override val components = List(AlacsComponent)
-  
+
   object AlacsComponent extends PluginComponent {
     override val global: AlacsPlugin.this.global.type = AlacsPlugin.this.global
     override val runsAfter = List[String]("parser");
     override val runsRightAfter = Some("parser");
     override val phaseName = "alacs component"
     override def newPhase(_prev: Phase) = new AlacsPhase(_prev)
-    
+
     class AlacsPhase(prev: Phase) extends StdPhase(prev) {
       override def name = "alacs phase"
       override def apply(unit: CompilationUnit) {
@@ -34,14 +34,32 @@ class AlacsPlugin(val global: Global) extends Plugin {
   }
 
   def analyzeTree(tree: Tree, report: BugReport): BugReport = {
-    def info(msg: String) = global.reporter.info(tree.pos, msg, true)
-    
+    def info(pos: Position, msg: String) = global.reporter.info(pos, msg, true)
     tree match {
-      case DefDef(mods, name, tparams, vparamss, tpt, rhs) => {
-        info(tree.children.toString)
-        report
+      case tree@DefDef(_, _, _, _, _, _) => {
+
+        val headMatches = tree.children.head match {
+          case Select(q, n) => {
+            if (n.toString == "Unit") true
+            else false
+          }
+          case _ => false
+        }
+
+        if (headMatches) {
+          tree.children.last match {
+            case tree@Block(_, _) => {
+              tree.children.last match {
+                case Literal(_) => info(tree.pos, "pointless literal")
+                case _ =>
+              }
+              report
+            }
+            case _ => report
+          }
+        } else report
       }
-      
+
       case _ => report
     }
   }
