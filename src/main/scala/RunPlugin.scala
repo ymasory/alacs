@@ -13,7 +13,7 @@ object RunPlugin {
   //------------------------------------------------------------------
 
   val curDir = (new java.io.File(".")).getCanonicalPath
-  val pluginLoc = curDir + "/target/" + scalaVersion + "/alacs-alpha.jar"
+  val pluginLoc = curDir + "/target/scala_" + scalaVersion + "/alacs-alpha.jar"
   val testPrefix = curDir + "/src/test/resources/"
 
   def runPlugin(path: String): BugReport = runPluginWithExec(path)
