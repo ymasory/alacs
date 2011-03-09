@@ -2,14 +2,14 @@ package com.github.alacscala.alacs
 
 import org.scalatest.FunSuite
 
-class AccidentalProcedure extends FunSuite {
+class UnintentionalProcedure extends FunSuite {
 
   test("missing equals, string literal") {
     val expected = BugReport(List(Bug(1)))
 
     expect(expected) {
       RunPlugin.runPlugin(
-        "001-accidental-procedure/MissingEqualsStringLiteral.scala")
+        "001-unintentional-procedure/MissingEqualsStringLiteral.scala")
     }
   }
 
@@ -18,7 +18,7 @@ class AccidentalProcedure extends FunSuite {
 
     expect(expected) {
       RunPlugin.runPlugin(
-        "001-accidental-procedure/NotMissingEqualsStringLiteral.scala")
+        "001-unintentional-procedure/NotMissingEqualsStringLiteral.scala")
     }
   }
 
@@ -27,7 +27,7 @@ class AccidentalProcedure extends FunSuite {
 
     expect(expected) {
       RunPlugin.runPlugin(
-        "common/EmptyDef2.scala")
+        "common/EmptyProcedure.scala")
     }
   }
 }

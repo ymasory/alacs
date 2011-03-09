@@ -50,7 +50,7 @@ class AlacsPlugin(val global: Global) extends Plugin {
         if (headMatches) {
           tree.children.last match {
             case Literal(_) => {
-              info(tree.pos, "accidental procedure")
+              info(tree.pos, "unintentional procedure")
               report.copy(bugs = Bug(1) :: report.bugs)
             }
             case _ => report
