@@ -7,7 +7,7 @@ import java.io.{File, StringWriter, PrintWriter}
 object RunPlugin {
 
   val curDir = (new java.io.File(".")).getCanonicalPath
-  val pluginLoc = curDir + "/target/scala_2.8.0/alacs-alpha.jar"
+  val pluginLoc = curDir + "/target/scala_2.8.1/alacs-alpha.jar"
   val testPrefix = curDir + "/src/test/resources/"
 
   def runPlugin(path: String): BugReport = runPluginWithExec(path)
