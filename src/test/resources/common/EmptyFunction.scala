@@ -1,0 +1,4 @@
+object EmptyFunction {
+  
+  def foo = {}
+}

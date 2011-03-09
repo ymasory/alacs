@@ -21,4 +21,13 @@ class AccidentalProcedure extends FunSuite {
         "001-accidental-procedure/NotMissingEqualsStringLiteral.scala")
     }
   }
+
+  test("empty procedures are fine") {
+    val expected = BugReport.EmptyReport
+
+    expect(expected) {
+      RunPlugin.runPlugin(
+        "common/EmptyDef2.scala")
+    }
+  }
 }

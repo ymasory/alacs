@@ -1,0 +1,4 @@
+object EmptyProcedure {
+  
+  def foo {}
+}
