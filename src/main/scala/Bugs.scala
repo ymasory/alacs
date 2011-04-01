@@ -1,4 +1,4 @@
-package com.github.alacscala.alacs
+package com.github.alacs
 
 case class Bug(bugId: Int)
 

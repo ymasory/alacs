@@ -1,4 +1,4 @@
-package com.github.alacscala.alacs
+package com.github.alacs
 
 import org.scalatest.FunSuite
 

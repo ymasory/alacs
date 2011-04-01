@@ -1,4 +1,4 @@
-package com.github.alacscala.alacs
+package com.github.alacs
 
 import scala.tools.nsc.{ Global, Settings }
 import scala.tools.nsc.reporters.ConsoleReporter
