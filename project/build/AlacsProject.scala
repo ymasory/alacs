@@ -10,7 +10,7 @@ class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   val publishTo = ("Scala Tools Nexus" at
                    "http://nexus.scala-tools.org/" +
                    "content/repositories/releases/")
-  Credentials(Path.userHome / ".scalatools", log)
+  Credentials(Path.userHome / ".ivy2"/ ".credentials", log)
   override def packageSrcJar= defaultJarPath("-sources.jar")
   val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++
@@ -33,7 +33,8 @@ class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   log.setTrace(2)
 
   //compiler options
-  override def compileOptions = super.compileOptions ++ compileOptions("-deprecation", "-unchecked")
+  override def compileOptions = super.compileOptions ++
+    compileOptions("-deprecation", "-unchecked")
 
   //scaladoc options
   override def documentOptions =
