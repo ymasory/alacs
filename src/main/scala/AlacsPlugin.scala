@@ -6,6 +6,8 @@ import nsc.Phase
 import nsc.plugins.Plugin
 import nsc.plugins.PluginComponent
 
+import scala.collection.{mutable => m}
+
 class AlacsPlugin(val global: Global) extends Plugin {
   import global._
 
@@ -24,18 +26,22 @@ class AlacsPlugin(val global: Global) extends Plugin {
       override def name = "alacs phase"
       override def apply(unit: CompilationUnit) {
 
-        var curReport = BugReport.EmptyReport
+        val bugs = new m.ListBuffer[Bug]
         for (tree <- unit.body) {
-          curReport = analyzeTree(tree, curReport)
+          analyzeTree(tree) match {
+            case Some(bug) => bugs += bug
+            case None =>
+          }
         }
-        println("\n" + curReport.report)
+
         // global.currentRun.cancel
       }
     }
   }
 
-  def analyzeTree(tree: Tree, report: BugReport): BugReport = {
-    def info(pos: Position, msg: String) = global.reporter.info(pos, msg, true)
+  def analyzeTree(tree: Tree): Option[Bug] = {
+    def report(bug: Bug) = global.reporter.info(bug.pos, bug.pat.info.desc, true)
+
     tree match {
       case tree@DefDef(_, _, _, _, _, _) => {
 
@@ -49,17 +55,18 @@ class AlacsPlugin(val global: Global) extends Plugin {
 
         if (headMatches) {
           tree.children.last match {
-            case Literal(Constant(())) => report
+            case Literal(Constant(())) => None
             case Literal(l)  => {
-              info(tree.pos, "unintentional procedure")
-              report.copy(bugs = Bug(1) :: report.bugs)
+              val bug = Bug(BugPatterns.BPUnintentionalProcedure, tree.pos)
+              report(bug)
+              Some(bug)
             }
-            case _ => report
+            case _ => None
           }
-        } else report
+        } else None
       }
 
-      case _ => report
+      case _ => None
     }
   }
 }

@@ -1,31 +1,15 @@
 package com.github.alacs
 
-case class Bug(bugId: Int)
+import scala.tools.nsc.util.Position
 
-case class BugReport(bugs: List[Bug]) {
+case class BugPattern(bugId: Int, info: BugInfo) {
+  override val toString = "Alacs-" + bugId
+}
+case class BugInfo(desc: String)
 
-  val LF = "\n"
-  val report = {
-    LF +
-      "REPORT" + LF +
-      "------" + LF + bugs.map(_.bugId).mkString(LF) + LF
-  }
+case class Bug(pat: BugPattern, pos: Position)
+
+object BugPatterns {
+  val BPUnintentionalProcedure = BugPattern(0, BugInfo("unintentional procedure"))
 }
 
-case object BugReport {
-
-  val EmptyReport = BugReport(List.empty[Bug])
-
-  def parse(in: List[String]): BugReport = {
-    var curReport = EmptyReport
-    for (line <- in) {
-      try {
-        val bugId = line.toInt
-        curReport = curReport.copy(Bug(bugId) :: curReport.bugs)
-      } catch {
-        case _ =>
-      }
-    }
-    curReport
-  }
-}
