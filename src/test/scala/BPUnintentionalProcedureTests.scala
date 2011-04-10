@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class BPUnintentionalProcedureTests extends AlacsFunSuite {
 
-  def run = genRun("001-unintentional-procedure/")
+  val run = {runBugs("001-unintentional-procedure/", _: String)}
 
   test("missing equals, string literal") {
     val bugs: List[Bug] = run("MissingEqualsStringLiteral")
@@ -19,7 +19,7 @@ class BPUnintentionalProcedureTests extends AlacsFunSuite {
 
   test("empty procedures are fine") {
     expect(Nil) {
-      commonRun("EmptyProcedure")
+      commonRunBugs("EmptyProcedure")
     }
   }
 

@@ -4,11 +4,10 @@ import org.scalatest.FunSuite
 
 class PluginTestTests extends AlacsFunSuite {
 
-  val run = genRun("000-test-tests/")
+  val run = {runAll("000-test-tests/", _: String)}
 
   test("testing framework gets info messages") {
     pending
-    val bugs: List[Bug] = run("Info")
   }
 
   test("testing framework gets warnings") {
@@ -21,7 +20,7 @@ class PluginTestTests extends AlacsFunSuite {
     assert(messages.length === 1)
   }
 
-  test("implicit conversion to Bug doesn't only picks up on Alacs") {
+  test("implicit conversion to Bug only picks up on Alacs") {
     pending
     val bugs: List[Bug] = run("Error")
     assert(bugs.length === 0)

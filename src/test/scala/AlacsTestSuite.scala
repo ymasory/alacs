@@ -4,9 +4,12 @@ import org.scalatest.FunSuite
 
 class AlacsFunSuite extends FunSuite {
 
-  def genRun(dirName: String): String => List[PluginMessage] = {
-    (fileName: String) => RunPlugin.runPlugin(dirName + fileName + ".scala")
-  }
+  def runAll(dirName: String, fileName: String): List[PluginMessage] = 
+    RunPlugin.runPlugin(dirName + fileName + ".scala")
 
-  def commonRun(fileName: String): List[PluginMessage] =  genRun("common/")(fileName)
+  def runBugs(dirName: String, fileName: String): List[Bug] = runAll(dirName, fileName)
+
+  def commonRunAll(fileName: String): List[PluginMessage] =  runAll("common/", fileName)
+
+  def commonRunBugs(fileName: String): List[Bug] =  runBugs("common/", fileName)
 }
