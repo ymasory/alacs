@@ -16,7 +16,8 @@ object RunPlugin {
   val testPrefix = curDir + "/src/test/resources/"
 
   def runPlugin(fileName: String): List[PluginMessage] = {
-    val settings = new Settings
+    val settings = new Settings 
+    settings.outputDirs setSingleOutput (curDir + "/target")
     settings.classpath.tryToSet(List(
       "project/boot/scala-" + scalaVersion + "/lib/scala-compiler.jar" +
       ":project/boot/scala-" + scalaVersion + "/lib/scala-library.jar"))
