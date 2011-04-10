@@ -6,11 +6,16 @@ package com.github {
     type PluginMessage = StoreReporter#Info
 
     implicit def messages2Bugs(messages: List[PluginMessage]): List[Bug] = {   
-      messages map {parseBug(_)}
+      messages flatMap {
+        parseBug(_) match {
+          case Some(bug) => List(bug)
+          case None      => Nil
+        }
+      }
     }
 
-    implicit def parseBug(msg: PluginMessage): Bug = {
-      null
+    implicit def parseBug(msg: PluginMessage): Option[Bug] = {
+      Some(null)
     }
   }
 }
