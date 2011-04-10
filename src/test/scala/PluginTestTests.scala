@@ -9,6 +9,7 @@ class PluginTestTests extends FunSuite {
   }
 
   test("testing framework gets info messages") {
+    pending //need info message without using plugin
     val messages = run("Info")
     assert(messages.length === 1)
   }
