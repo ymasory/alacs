@@ -7,7 +7,8 @@ class BPUnintentionalProcedureTests extends AlacsFunSuite {
   def run = genRun("001-unintentional-procedure/")
 
   test("missing equals, string literal") {
-    println(run("MissingEqualsStringLiteral"))
+    val bugs: List[Bug] = run("MissingEqualsStringLiteral")
+    assert(bugs.length === 1)
   }
 
   test("not missing equals, string literal") {
@@ -23,6 +24,8 @@ class BPUnintentionalProcedureTests extends AlacsFunSuite {
   }
 
   test("missing equals, function body is block") {
-    println(run("MissingEqualsBlock"))
+    pending
+    val bugs: List[Bug] = run("MissingEqualsBlock")
+    assert(bugs.length === 1)
   }
 }

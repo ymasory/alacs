@@ -22,6 +22,7 @@ class PluginTestTests extends AlacsFunSuite {
   }
 
   test("implicit conversion to Bug doesn't only picks up on Alacs") {
+    pending
     val bugs: List[Bug] = run("Error")
     assert(bugs.length === 0)
   }
