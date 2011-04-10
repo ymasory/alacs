@@ -9,19 +9,18 @@ class PluginTestTests extends FunSuite {
   }
 
   test("testing framework gets info messages") {
-    pending
+    val messages = run("Info")
+    assert(messages.length === 1)
   }
 
   test("testing framework gets warnings") {
     val messages = run("Warning")
     assert(messages.length === 1)
-    val msg = messages(0)
   }
 
   test("testing framework gets errors") {
     val messages = run("Error")
     assert(messages.length === 1)
-    val msg = messages(0)
   }
 
   test("implicit conversion to Bug doesn't only picks up on Alacs") {
