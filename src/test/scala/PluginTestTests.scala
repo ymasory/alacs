@@ -8,6 +8,10 @@ class PluginTestTests extends FunSuite {
     RunPlugin.runPlugin("000-test-tests/" + fileName + ".scala")
   }
 
+  test("testing framework gets info messages") {
+    pending
+  }
+
   test("testing framework gets warnings") {
     val messages = run("Warning")
     assert(messages.length === 1)
