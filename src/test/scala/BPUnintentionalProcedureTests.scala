@@ -2,24 +2,13 @@ package com.github.alacs
 
 import org.scalatest.FunSuite
 
-class BPUnintentionalProcedureTests extends FunSuite {
+class BPUnintentionalProcedureTests extends AlacsFunSuite {
 
-  def run(fileName: String): List[Bug] = {
-    RunPlugin.runPlugin(
-      "001-unintentional-procedure/" + fileName + ".scala")
+  def run = genRun("001-unintentional-procedure/")
+
+  test("missing equals, string literal") {
+    println(run("MissingEqualsStringLiteral"))
   }
-
-  def commonRun(fileName: String): List[Bug] = {
-    RunPlugin.runPlugin("common/" + fileName + ".scala")
-  }
-
-  // test("missing equals, string literal") {
-  //   val expected = BugReport(List(Bug(1)))
-
-  //   expect(expected) {
-  //     run("MissingEqualsStringLiteral")
-  //   }
-  // }
 
   test("not missing equals, string literal") {
     expect(Nil) {
@@ -33,11 +22,7 @@ class BPUnintentionalProcedureTests extends FunSuite {
     }
   }
 
-  // test("missing equals, function body is block") {
-  //   val expected = BugReport(List(Bug(1)))
-
-  //   expect(expected) {
-  //     run("MissingEqualsBlock")
-  //   }
-  // }
+  test("missing equals, function body is block") {
+    println(run("MissingEqualsBlock"))
+  }
 }

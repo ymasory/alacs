@@ -2,16 +2,13 @@ package com.github.alacs
 
 import org.scalatest.FunSuite
 
-class PluginTestTests extends FunSuite {
+class PluginTestTests extends AlacsFunSuite {
 
-  def run(fileName: String) = {
-    RunPlugin.runPlugin("000-test-tests/" + fileName + ".scala")
-  }
+  val run = genRun("000-test-tests/")
 
   test("testing framework gets info messages") {
-    pending //need info message without using plugin
-    val messages = run("Info")
-    assert(messages.length === 1)
+    pending
+    val bugs: List[Bug] = run("Info")
   }
 
   test("testing framework gets warnings") {

@@ -40,8 +40,9 @@ class AlacsPlugin(val global: Global) extends Plugin {
   }
 
   def analyzeTree(tree: Tree): Option[Bug] = {
-    def report(bug: Bug) = global.reporter.info(bug.pos, bug.pat.info.desc, true)
-
+    def report(bug: Bug) = global.reporter.info(bug.pos,
+                                                bug.pat.info.desc,
+                                                true)
     tree match {
       case tree@DefDef(_, _, _, _, _, _) => {
 
