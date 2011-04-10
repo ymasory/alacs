@@ -9,7 +9,7 @@ package com.github {
       messages map {parseBug(_)}
     }
 
-    def parseBug(msg: PluginMessage): Bug = {
+    implicit def parseBug(msg: PluginMessage): Bug = {
       null
     }
   }
