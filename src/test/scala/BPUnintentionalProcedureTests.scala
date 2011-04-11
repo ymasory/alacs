@@ -4,11 +4,13 @@ import org.scalatest.FunSuite
 
 class BPUnintentionalProcedureTests extends AlacsFunSuite {
 
+  val id = BugPatterns.BPUnintentionalProcedure.bugId
+
   val run = {runBugs("001-unintentional-procedure/", _: String)}
 
   test("missing equals, string literal") {
     val bugs: List[Bug] = run("MissingEqualsStringLiteral")
-    assert(bugs.length === 1)
+    check(bugs)
   }
 
   test("not missing equals, string literal") {
@@ -26,6 +28,11 @@ class BPUnintentionalProcedureTests extends AlacsFunSuite {
   test("missing equals, function body is block") {
     pending
     val bugs: List[Bug] = run("MissingEqualsBlock")
+    check(bugs)
+  }
+
+  def check(bugs: List[Bug]) {
     assert(bugs.length === 1)
+    assert(bugs(0).pat.bugId === id)
   }
 }

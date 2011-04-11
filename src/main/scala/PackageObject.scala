@@ -16,9 +16,13 @@ package com.github {
 
     implicit def parseBug(msg: PluginMessage): Option[Bug] = {
       val AlacsPattern = """.*Alacs\-(\d\d\d).*""".r
-      val AlacsPattern(numStr) = msg.toString
-      if (numStr != null) Some(Bug(BugPattern(numStr.toInt, null), null))
-      else None
+      try {
+        val AlacsPattern(numStr) = msg.toString
+        Some(Bug(BugPattern(numStr.toInt, null), null))
+      }
+      catch {
+        case e: MatchError => None
+      }
     }
   }
 }

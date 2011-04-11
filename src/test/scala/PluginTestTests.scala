@@ -6,10 +6,6 @@ class PluginTestTests extends AlacsFunSuite {
 
   val run = {runAll("000-test-tests/", _: String)}
 
-  test("testing framework gets info messages") {
-    pending
-  }
-
   test("testing framework gets warnings") {
     val messages = run("Warning")
     assert(messages.length === 1)
@@ -21,7 +17,6 @@ class PluginTestTests extends AlacsFunSuite {
   }
 
   test("implicit conversion to Bug only picks up on Alacs") {
-    pending
     val bugs: List[Bug] = run("Error")
     assert(bugs.length === 0)
   }
