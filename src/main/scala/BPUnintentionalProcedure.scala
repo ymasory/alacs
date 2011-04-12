@@ -30,9 +30,11 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
   }
 
   def analyzeTree(tree: Tree): Option[Bug] = {
-    def report(bug: Bug) = {
+    def report(bug: Bug): Option[Bug] = {
       global.reporter.info(bug.pos, bug.pat.toString, false)
+      Some(bug)
     }
+
     tree match {
       case tree@DefDef(_, _, _, _, _, _) => {
 
@@ -43,20 +45,27 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
           }
           case _ => false
         }
-
+        val bug = Bug(BugPatterns.BPUnintentionalProcedure, tree.pos)
         if (headMatches) {
           tree.children.last match {
             case Literal(Constant(())) => None
-            case Literal(l)  => {
-              val bug = Bug(BugPatterns.BPUnintentionalProcedure, tree.pos)
-              report(bug)
-              Some(bug)
+            case Literal(l)  => report(bug)
+            case Block(lst, _) => {
+              lst match {
+                case Nil => None
+                case _ :: _ => {
+                  lst.last match {
+                    case Literal(_) => report(bug)
+                    case _ => None
+                  }
+                }
+              }
             }
             case _ => None
           }
-        } else None
+        }
+        else None
       }
-
       case _ => None
     }
   }

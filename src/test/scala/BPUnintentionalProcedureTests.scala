@@ -26,7 +26,6 @@ class BPUnintentionalProcedureTests extends AlacsFunSuite {
   }
 
   test("missing equals, function body is block") {
-    pending
     val bugs: List[Bug] = run("MissingEqualsBlock")
     check(bugs)
   }
