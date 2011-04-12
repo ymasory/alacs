@@ -12,9 +12,10 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
   override val runsAfter = List[String]("parser");
   override val runsRightAfter = Some("parser");
   override val phaseName = "alacs component"
-  override def newPhase(_prev: Phase) = new AlacsPhase(_prev)
+  override def newPhase(_prev: Phase) =
+    new BPUnintentionalComponentPhase(_prev)
 
-  class AlacsPhase(prev: Phase) extends StdPhase(prev) {
+  class BPUnintentionalComponentPhase(prev: Phase) extends StdPhase(prev) {
     override def name = "alacs phase"
     override def apply(unit: CompilationUnit) {
 
