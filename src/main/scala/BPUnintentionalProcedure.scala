@@ -38,7 +38,9 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
     tree match {
       case tree@DefDef(_, _, _, _, _, _) => {
 
-        val headMatches = tree.children.head match {
+        val body = tree.children.last
+        val selector = tree.children(tree.children.length - 2)
+        val selectorMatches = selector match {
           case Select(q, n) => {
             if (n.toString == "Unit") true
             else false
@@ -46,19 +48,14 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
           case _ => false
         }
         val bug = Bug(BugPatterns.BPUnintentionalProcedure, tree.pos)
-        if (headMatches) {
-          tree.children.last match {
-            case Literal(Constant(())) => None
-            case Literal(l)  => report(bug)
-            case Block(lst, _) => {
-              lst match {
-                case Nil => None
-                case _ :: _ => {
-                  lst.last match {
-                    case Literal(_) => report(bug)
-                    case _ => None
-                  }
-                }
+        if (selectorMatches) {
+          body match {
+            case Literal(Constant(())) => None //empty procedures
+            case Literal(_)  => report(bug)
+            case Block(_, lastExpr) => {
+              lastExpr match {
+                case Literal(_) => report(bug)
+                case _ => None
               }
             }
             case _ => None
