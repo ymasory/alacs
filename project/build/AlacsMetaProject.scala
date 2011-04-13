@@ -28,10 +28,10 @@ class AlacsMetaProject(info: ProjectInfo) extends DefaultProject(info) {
   //the compiler plugin project
   lazy val alacsProject = project("alacs", "alacs", new AlacsProject(_))
 
-  //bugpattern subprojects
-  lazy val unintentionalProcedure = project("001-unintentional-procedure",
-                                            "001-unintentional-procedure",
-                                            new AlacsPatternTestProject(_))
+  //testing subprojects, one for each bug pattern
+  lazy val alacs001 = project("patterns.001-unintentional-procedure",
+                              "001 Unintentional Procedure",
+                              new AlacsPatternTestProject(_))
 
   class AlacsProject(info: ProjectInfo) extends DefaultProject(info) {
 
