@@ -2,6 +2,9 @@ import sbt._
 
 class AlacsMetaProject(info: ProjectInfo) extends ParentProject(info) {
   
+  //compile subprojects in parallel
+  override def parallelExecution = true
+  
   //turn down logging a little
   log.setLevel(Level.Warn)
   log.setTrace(2)
@@ -16,6 +19,7 @@ class AlacsMetaProject(info: ProjectInfo) extends ParentProject(info) {
 }
 
 protected class AlacsProject(info: ProjectInfo) extends DefaultProject(info) {
+
   //project name
   override val artifactID = "alacs"
 
