@@ -29,7 +29,7 @@ class AlacsMetaProject(info: ProjectInfo) extends DefaultProject(info) {
   lazy val alacsProject = project("alacs", "alacs", new AlacsProject(_))
 
   //testing subprojects, one for each bug pattern
-  lazy val alacs001 = project("patterns.001-unintentional-procedure",
+  lazy val alacs001 = project("patterns" / "001-unintentional-procedure",
                               "001 Unintentional Procedure",
                               new AlacsPatternTestProject(_))
 
