@@ -26,7 +26,7 @@ class AlacsMetaProject(info: ProjectInfo) extends DefaultProject(info) {
   log.setTrace(2)
 
   //the compiler plugin project
-  lazy val alacsProject = project("alacs", "alacs", new AlacsProject(_))
+  lazy val alacsProject = project("alacs", "Alacs Plugin", new AlacsProject(_))
 
   //testing subprojects, one for each bug pattern
   lazy val alacs001 = project("patterns" / "001-unintentional-procedure",
