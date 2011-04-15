@@ -10,7 +10,7 @@ class AlacsMetaProject(info: ProjectInfo) extends ParentProject(info) {
   log.setTrace(2)
 
   //the compiler plugin project
-  lazy val alacsProject = project("alacs", "Alacs Plugin", new AlacsProject(_))
+  lazy val plugin = project("plugin", "plugin", new AlacsProject(_))
 
   //testing subprojects, one for each bug pattern
   lazy val alacs001 = project("patterns" / "001-unintentional-procedure",
@@ -33,6 +33,7 @@ protected class AlacsProject(info: ProjectInfo) extends DefaultProject(info) {
   val sourceArtifact = Artifact.sources(artifactID)
   override def packageToPublishActions = super.packageToPublishActions ++
     Seq(packageSrc)
+  override def deliverProjectDependencies = Nil
 
 
   //files to go in packaged jars
@@ -58,9 +59,16 @@ protected class AlacsPatternTestProject(info: ProjectInfo)
                     "http://nexus.scala-tools.org/" +
                     "content/repositories/snapshots")
   //managed dependencies from built-in repositories
-  val scalatest = "org.scalatest" % "scalatest" % "1.2"
+  val scalatest = "org.scalatest" % "scalatest" % "1.2" % "test->default"
 
   //compiler options
   override def compileOptions = super.compileOptions ++
-    compileOptions("-deprecation", "-unchecked")    
+    compileOptions("-deprecation", "-unchecked")
+
+  //prevent deployment
+  def doNothing = task { None }
+  override def publishLocalAction = doNothing
+  override def deliverLocalAction = doNothing
+  override def publishAction = doNothing
+  override def deliverAction = doNothing
 }
