@@ -15,7 +15,8 @@ class AlacsMetaProject(info: ProjectInfo) extends ParentProject(info) {
   //testing subprojects, one for each bug pattern
   lazy val alacs001 = project("patterns" / "001-unintentional-procedure",
                               "001 Unintentional Procedure",
-                              new AlacsPatternTestProject(_))
+                              new AlacsPatternTestProject(_),
+                              plugin)
 }
 
 protected class AlacsProject(info: ProjectInfo) extends DefaultProject(info) {
