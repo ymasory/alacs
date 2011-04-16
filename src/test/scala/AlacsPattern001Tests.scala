@@ -2,9 +2,9 @@ package com.github.alacs
 
 import org.scalatest.FunSuite
 
-class BPUnintentionalProcedureTests extends AlacsFunSuite {
+class AlacsPattern001Tests extends AlacsFunSuite {
 
-  val id = BugPatterns.BPUnintentionalProcedure.bugId
+  val id = BugPatterns.AlacsPattern001.bugId
 
   val run = {runBugs("001-unintentional-procedure/", _: String)}
 

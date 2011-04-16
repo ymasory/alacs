@@ -1,4 +1,4 @@
-package com.github.alacs
+package com.github.alacs.patterns
 
 import scala.tools.nsc
 import nsc.Global
@@ -7,15 +7,17 @@ import nsc.plugins.PluginComponent
 
 import scala.collection.{mutable => m}
 
-class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
+import com.github.alacs.{Bug, BugPatterns}
+
+class AlacsPattern001(val global: Global) extends PluginComponent {
   import global._
   override val runsAfter = List[String]("parser");
   override val runsRightAfter = Some("parser");
   override val phaseName = "alacs component"
   override def newPhase(_prev: Phase) =
-    new BPUnintentionalComponentPhase(_prev)
+    new AlacsPattern001Phase(_prev)
 
-  class BPUnintentionalComponentPhase(prev: Phase) extends StdPhase(prev) {
+  class AlacsPattern001Phase(prev: Phase) extends StdPhase(prev) {
     override def name = "alacs phase"
     override def apply(unit: CompilationUnit) {
 
@@ -47,7 +49,7 @@ class BPUnintentionalProcedure(val global: Global) extends PluginComponent {
           }
           case _ => false
         }
-        val bug = Bug(BugPatterns.BPUnintentionalProcedure, tree.pos)
+        val bug = Bug(BugPatterns.AlacsPattern001, tree.pos)
         if (selectorMatches) {
           body match {
             case Literal(Constant(())) => None //empty procedures

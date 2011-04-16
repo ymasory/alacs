@@ -19,7 +19,7 @@ case class BugInfo(desc: String) {
 case class Bug(pat: BugPattern, pos: Position)
 
 object BugPatterns {
-  val BPUnintentionalProcedure =
+  val AlacsPattern001 =
     BugPattern(1, BugInfo("unintentional procedure"))
 }
 
