@@ -32,4 +32,19 @@ object RunPlugin {
     (new compiler.Run).compile(List(testPrefix + fileName))
     reporter.infos.toList
   }
+
+  def getRunningScalaVersion() = {
+    val stream = getClass.getResourceAsStream("/library.properties")
+    val lines = scala.io.Source.fromInputStream(stream).getLines
+    val optLine = lines find {l => l.startsWith("version.number")}
+    val version = optLine match {
+      case Some(line) => {
+        val Version = """v(.*)""".r
+        val Version(versionStr) = line
+        versionStr
+      }
+      case None => "2.8.0"
+    }
+    version
+  }
 }
