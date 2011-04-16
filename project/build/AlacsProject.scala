@@ -2,12 +2,11 @@ import sbt._
 
 class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   
-  //project name
-  override val artifactID = "alacs"
-
   //deployment
   override def managedStyle = ManagedStyle.Maven
-  val publishTo = "Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/snapshots"
+  val publishTo = (
+    "Scala Tools Nexus" at
+    "http://nexus.scala-tools.org/content/repositories/snapshots")
   Credentials(Path.userHome / ".ivy2"/ ".credentials", log)
   override def packageSrcJar= defaultJarPath("-sources.jar")
   val sourceArtifact = Artifact.sources(artifactID)
