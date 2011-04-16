@@ -6,14 +6,9 @@ import java.io.{ File, StringWriter, PrintWriter }
 
 object RunPlugin {
 
-  //------------------------------------------------------------------
-  //WARNING
-  //Keep this string in-sync with the one in /project/build.properties
-  val scalaVersion = "2.8.1"
-  //------------------------------------------------------------------
-
   val curDir = (new java.io.File(".")).getCanonicalPath
   val testPrefix = curDir + "/src/test/resources/"
+  val scalaVersion = getRunningScalaVersion()
 
   def runPlugin(fileName: String): List[PluginMessage] = {
     val settings = new Settings 
@@ -39,7 +34,7 @@ object RunPlugin {
     val optLine = lines find {l => l.startsWith("version.number")}
     val version = optLine match {
       case Some(line) => {
-        val Version = """v(.*)""".r
+        val Version = """version\.number=(\d\.\d\.\d).*""".r
         val Version(versionStr) = line
         versionStr
       }
