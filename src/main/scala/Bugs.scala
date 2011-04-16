@@ -7,9 +7,11 @@ import scala.tools.nsc.util.Position
 case class BugPattern(bugId: Int, info: BugInfo) {
 
   override val toString = {
-    val formatter = new DecimalFormat("000")
-    "Alacs-" + formatter.format(bugId) + " " + info
+    "Alacs-" + BugPattern.bugNumFormatter.format(bugId) + " " + info
   }
+}
+case object BugPattern {
+  val bugNumFormatter = new DecimalFormat("000")
 }
 
 case class BugInfo(desc: String) {

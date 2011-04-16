@@ -2,11 +2,9 @@ package com.github.alacs
 
 import org.scalatest.FunSuite
 
-class AlacsPattern002Tests extends AlacsFunSuite {
+class AlacsPattern002Tests extends AlacsPatternSuite {
 
-  val id = BugPatterns.AlacsPattern002.bugId
-
-  val run = {runBugs("002", _: String)}
+  override val id = 2
 
   // test("missing equals, string literal") {
   //   val bugs: List[Bug] = run("MissingEqualsStringLiteral")
@@ -29,9 +27,4 @@ class AlacsPattern002Tests extends AlacsFunSuite {
   //   val bugs: List[Bug] = run("MissingEqualsBlock")
   //   check(bugs)
   // }
-
-  def check(bugs: List[Bug]) {
-    assert(bugs.length === 1)
-    assert(bugs(0).pat.bugId === id)
-  }
 }

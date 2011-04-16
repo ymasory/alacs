@@ -4,16 +4,18 @@ import org.scalatest.FunSuite
 
 class PluginTestTests extends AlacsFunSuite {
 
-  val run = {runAll("pattern000", _: String)}
+  val run = {runAll("test-tests", _: String)}
 
   test("testing framework gets warnings") {
     val messages = run("Warning")
     assert(messages.length === 1)
+    assert(messages(0).toString contains "match is not exhaustive!")
   }
 
   test("testing framework gets errors") {
     val messages = run("Error")
     assert(messages.length === 1)
+    assert(messages(0).toString contains "expected but eof found")
   }
 
   test("implicit conversion to Bug only picks up on Alacs") {
