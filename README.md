@@ -9,7 +9,7 @@ The [scala-corpus](https://github.com/alacscala/scala-corpus) is a large collect
 There are two ways to contribute to Alacs:
 
 * Submitting suggestions for bug reports. You can do this on [the wiki](https://github.com/alacscala/alacs/wiki).
-* Writing code (e.g., submitting patches, joining the team, etc.)
+* Writing code (e.g., submitting patches, joining the team, etc.).
 
 Thank you for helping improve Alacs!
 
