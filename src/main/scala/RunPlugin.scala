@@ -29,17 +29,19 @@ object RunPlugin {
   }
 
   def getRunningScalaVersion() = {
-    val stream = getClass.getResourceAsStream("/library.properties")
-    val lines = scala.io.Source.fromInputStream(stream).getLines
-    val optLine = lines find {l => l.startsWith("version.number")}
-    val version = optLine match {
-      case Some(line) => {
-        val Version = """version\.number=(\d\.\d\.\d).*""".r
-        val Version(versionStr) = line
-        versionStr
-      }
-      case None => "2.8.0"
+    try {
+      val stream = getClass.getResourceAsStream("/library.properties")
+      val iter = scala.io.Source.fromInputStream(stream).getLines
+      val line = (iter find {l => l.startsWith("version.number")}).get
+      val Version = """version\.number=(\d\.\d\.\d).*""".r
+      val Version(versionStr) = line
+      versionStr
     }
-    version
+    catch {
+      case e => {
+        e.printStackTrace
+        "2.8.0"
+      }
+    }
   }
 }
