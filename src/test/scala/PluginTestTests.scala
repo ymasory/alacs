@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class PluginTestTests extends AlacsFunSuite {
 
-  val run = {runAll("000-test-tests/", _: String)}
+  val run = {runAll("pattern000", _: String)}
 
   test("testing framework gets warnings") {
     val messages = run("Warning")

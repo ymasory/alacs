@@ -21,5 +21,7 @@ case class Bug(pat: BugPattern, pos: Position)
 object BugPatterns {
   val AlacsPattern001 =
     BugPattern(1, BugInfo("unintentional procedure"))
+  val AlacsPattern002 =
+    BugPattern(2, BugInfo("overriden method has different named parameters"))
 }
 

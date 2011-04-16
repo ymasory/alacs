@@ -6,7 +6,7 @@ class AlacsPattern001Tests extends AlacsFunSuite {
 
   val id = BugPatterns.AlacsPattern001.bugId
 
-  val run = {runBugs("001-unintentional-procedure/", _: String)}
+  val run = {runBugs("pattern001", _: String)}
 
   test("missing equals, string literal") {
     val bugs: List[Bug] = run("MissingEqualsStringLiteral")

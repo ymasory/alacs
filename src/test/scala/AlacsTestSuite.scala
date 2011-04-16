@@ -4,10 +4,10 @@ import org.scalatest.FunSuite
 
 class AlacsFunSuite extends FunSuite {
 
-  val commonDir = "common/"
+  val commonDir = "common"
 
   def runAll(dirName: String, fileName: String): List[PluginMessage] = 
-    RunPlugin.runPlugin(dirName + fileName + ".scala")
+    RunPlugin.runPlugin(dirName + "/" + fileName + ".scala")
 
   def runBugs(dirName: String, fileName: String): List[Bug] =
     runAll(dirName, fileName)
