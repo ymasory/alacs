@@ -8,7 +8,17 @@ object RunPlugin {
 
   val curDir = (new java.io.File(".")).getCanonicalPath
   val testPrefix = curDir + "/src/test/resources/"
-  val scalaVersion = getRunningScalaVersion()
+
+  lazy val scalaVersion = {
+    val matcher = """version (\d+\.\d+\.\d+).*""".r
+    util.Properties.versionString match {
+      case matcher(versionString) => Some(versionString)
+      case _ => {
+        Console.err println ("could not detect scala version")
+        None
+      }
+    }
+  } getOrElse "2.8.0"
 
   def runPlugin(fileName: String): List[PluginMessage] = {
     val settings = new Settings 
@@ -26,20 +36,5 @@ object RunPlugin {
     }
     (new compiler.Run).compile(List(testPrefix + fileName))
     reporter.infos.toList
-  }
-
-  def getRunningScalaVersion() = {
-    try {
-      val line = util.Properties.versionString
-      val Version = """version (\d\.\d\.\d).*""".r
-      val Version(versionStr) = line
-      versionStr
-    }
-    catch {
-      case e => {
-        e.printStackTrace
-        "2.8.0"
-      }
-    }
   }
 }
