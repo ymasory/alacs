@@ -4,7 +4,7 @@ import scala.tools.nsc
 import nsc.Global
 import nsc.plugins.Plugin
 
-import patterns.AlacsPattern001
+import patterns._
 
 class AlacsPlugin(val global: Global) extends Plugin {
   import global._
@@ -13,4 +13,5 @@ class AlacsPlugin(val global: Global) extends Plugin {
   override val description = "finds bugs, hopefully"
   override val components = List(
     new AlacsPattern001(global))
+    // new AlacsPattern002(global))
 }
