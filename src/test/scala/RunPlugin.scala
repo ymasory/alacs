@@ -30,10 +30,10 @@ object RunPlugin {
 
   def getRunningScalaVersion() = {
     try {
-      val stream = getClass.getResourceAsStream("/library.properties")
-      val iter = scala.io.Source.fromInputStream(stream).getLines
-      val line = (iter find {l => l.startsWith("version.number")}).get
-      val Version = """version\.number=(\d\.\d\.\d).*""".r
+      val props = new java.util.Properties
+      props.load(getClass.getResourceAsStream("/library.properties"))
+      val line = props.getProperty("version.number")
+      val Version = """(\d\.\d\.\d).*""".r
       val Version(versionStr) = line
       versionStr
     }
