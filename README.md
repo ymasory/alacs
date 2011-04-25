@@ -1,6 +1,6 @@
 # Alacs - Bug finder for Scala #
 
-## Try it ## 
+## Try it ##
 Alacs is not ready for serious use, but feel free to try it out.
 
 ### sbt ###
