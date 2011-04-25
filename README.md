@@ -1,6 +1,8 @@
-# Alacs - Static analysis for Scala #
+# Alacs - Bug finder for Scala #
+
 ## Try it ## 
 Alacs is not ready for serious use, but feel free to try it out.
+
 ### sbt ###
 Modify your `Project.scala` thusly:
 
