@@ -4,9 +4,15 @@ class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
   
   //deployment
   override def managedStyle = ManagedStyle.Maven
-  val publishTo = (
-    "Scala Tools Nexus" at
-    "http://nexus.scala-tools.org/content/repositories/snapshots")
+
+  override def defaultPublishRepository = {
+    val nexusDirect = "http://nexus-direct.scala-tools.org/content/repositories/"
+    if (version.toString.endsWith("SNAPSHOT"))
+          Some("scala-tools snapshots" at nexusDirect + "snapshots/")
+        else
+          Some("scala-tools releases" at nexusDirect + "releases/")
+  }
+
   Credentials(Path.userHome / ".ivy2"/ ".credentials", log)
   override def packageSrcJar= defaultJarPath("-sources.jar")
   val sourceArtifact = Artifact.sources(artifactID)
