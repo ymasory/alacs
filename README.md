@@ -13,9 +13,8 @@ Modify your `Project.scala` thusly:
     }
 
 ### CLI ###
-Build the project with `sbt package` on the command line.
-
-    scalac -Xplugin:/path/to/alacs/target/scala_2.8.1/alacs_2.8.1-0.0.0-SNAPSHOT.jar -Xplugin-require:alacs foo.scala
+* Build the project with `sbt package` on the command line.
+* `scalac -Xplugin:/path/to/alacs/target/scala_2.8.1/alacs_2.8.1-0.0.0-SNAPSHOT.jar -Xplugin-require:alacs foo.scala`
 
 ### IDEs ###
 There is no support for IDEs (Eclipse, IntelliJ, Netbeans) yet. For all I know it's really trivial to use compiler plugins with them.
