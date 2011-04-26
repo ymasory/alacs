@@ -15,5 +15,5 @@ abstract class PatternDetector(global: Global) {
     Some(bug)
   }
 
-  def analyzeTree(tree: Global#Tree): Option[Bug]
+  def analyzeTree(tree: GTree): Option[Bug]
 }

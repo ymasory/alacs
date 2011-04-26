@@ -30,8 +30,20 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   val run =
     runBugs("pattern" + BugPattern.bugNumFormatter.format(id), _: String)
 
-  def check(bugs: List[Bug]) {
-    assert(bugs.length === 1)
-    assert(bugs(0).pat.bugId === id)
+  def checkBug(bugs: List[Bug]) {
+    assert(
+      bugs.length === 1,
+      "[expected exactly 1 bug but found " + bugs.length + "]")
+    val bugId = bugs(0).pat.bugId
+    assert(
+      bugId === id,
+      "[expected to get a bug with id " + id + " but got one with id " +
+      bugId + "]")
+  }
+
+  def checkNil(bugs: List[Bug]) {
+    assert (
+      bugs.length === 0,
+      "[expected 0 bugs but found " + bugs.length + "]")
   }
 }
