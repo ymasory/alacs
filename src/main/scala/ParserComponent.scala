@@ -26,7 +26,7 @@ class ParserComponent(val global: Global) extends PluginComponent {
           pat2 analyzeTree tree
         }
         catch {
-          case e => Console.err println(e.getMessage)
+          case _ =>
         }
       }
     }
