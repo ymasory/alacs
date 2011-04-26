@@ -12,6 +12,5 @@ class AlacsPlugin(val global: Global) extends Plugin {
   override val name = "alacs"
   override val description = "finds bugs, hopefully"
   override val components = List(
-    new AlacsPattern001(global))
-    // new AlacsPattern002(global))
+    new ParserComponent(global))
 }
