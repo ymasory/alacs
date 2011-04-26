@@ -9,7 +9,7 @@ class AlacsPattern002(global: Global) extends PatternDetector(global) {
 
   override val pattern = BugPattern(2, BugInfo("divide by literal 0"))
   
-  override def analyzeTree(tree: Global#Tree) = {
+  override def analyzeTree(tree: GTree) = {
     val bug = Bug(pattern, tree.pos)
     tree match {
       case Apply(Select(_, nme.DIV), List(Literal(Constant(0)))) => report(bug)
