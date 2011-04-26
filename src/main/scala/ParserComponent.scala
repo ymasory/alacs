@@ -21,8 +21,13 @@ class ParserComponent(val global: Global) extends PluginComponent {
       val pat1 = new AlacsPattern001(global)
       val pat2 = new AlacsPattern002(global)
       for (tree <- unit.body) {
-        pat1 analyzeTree tree
-        pat2 analyzeTree tree
+        try {
+          pat1 analyzeTree tree
+          pat2 analyzeTree tree
+        }
+        catch {
+          case e => Console.err println(e.getMessage)
+        }
       }
     }
   }
