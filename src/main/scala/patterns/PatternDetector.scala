@@ -3,10 +3,12 @@ package com.github.alacs.patterns
 import scala.tools.nsc
 import nsc.Global
 
-import com.github.alacs.Bug
+import com.github.alacs.{Bug, BugPattern}
 
-abstract class BugPattern(global: Global) {
+abstract class PatternDetector(global: Global) {
   import global._
+
+  val pattern: BugPattern
 
   def report(bug: Bug): Option[Bug] = {
     global.reporter.info(bug.pos, bug.pat.toString, false)

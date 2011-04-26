@@ -4,7 +4,7 @@ import org.scalatest.FunSuite
 
 class AlacsPattern001Tests extends AlacsFunSuite with AlacsPatternSuite {
 
-  override val id = BugPatterns.AlacsPattern001.bugId
+  override val id = 1
 
   test("missing equals, string literal") {
     val bugs: List[Bug] = run("MissingEqualsStringLiteral")

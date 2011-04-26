@@ -5,7 +5,7 @@ import nsc.Global
 import nsc.Phase
 import nsc.plugins.PluginComponent
 
-import com.github.alacs.{Bug, BugPatterns}
+import com.github.alacs.Bug
 
 class ParserComponent(val global: Global) extends PluginComponent {
   import global._

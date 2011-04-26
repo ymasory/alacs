@@ -2,12 +2,15 @@ package com.github.alacs.patterns
 
 import scala.tools.nsc.Global
 
-import com.github.alacs.{Bug, BugPatterns}
+import com.github.alacs.{Bug, BugInfo, BugPattern}
 
-class AlacsPattern001(global: Global) extends BugPattern(global) {
+class AlacsPattern001(global: Global) extends PatternDetector(global) {
   import global._
 
+  override val pattern = BugPattern(1, BugInfo("unintentional procedure"))
+
   override def analyzeTree(tree: Global#Tree) = {
+    val bug = Bug(pattern, tree.pos)
     tree match {
       case tree@DefDef(_, _, _, _, _, _) => {
 
@@ -20,7 +23,6 @@ class AlacsPattern001(global: Global) extends BugPattern(global) {
           }
           case _ => false
         }
-        val bug = Bug(BugPatterns.AlacsPattern001, tree.pos)
         if (selectorMatches) {
           body match {
             case Literal(Constant(())) => None //empty procedures
