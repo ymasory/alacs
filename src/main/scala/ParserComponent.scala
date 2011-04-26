@@ -1,11 +1,11 @@
-package com.github.alacs.patterns
+package com.github.alacs
 
 import scala.tools.nsc
 import nsc.Global
 import nsc.Phase
 import nsc.plugins.PluginComponent
 
-import com.github.alacs.Bug
+import com.github.alacs.patterns.PatternDetector
 
 class ParserComponent(val global: Global) extends PluginComponent {
   import global._
@@ -16,17 +16,22 @@ class ParserComponent(val global: Global) extends PluginComponent {
     new ParserPhase(_prev)
 
   class ParserPhase(prev: Phase) extends StdPhase(prev) {
+    import java.lang.reflect.Constructor
+
     override def name = "alacs praser phase"
     override def apply(unit: CompilationUnit) {
-      val pat1 = new AlacsPattern001(global)
-      val pat2 = new AlacsPattern002(global)
+
+      val patterns: List[Constructor[PatternDetector]] =
+        Reflector.discoverPatterns()
       for (tree <- unit.body) {
         try {
-          pat1 analyzeTree tree
-          pat2 analyzeTree tree
+          val bugs: List[Bug] = patterns flatMap { con =>
+            val pat: PatternDetector = con.newInstance(global)
+            pat analyzeTree tree 
+          }
         }
         catch {
-          case _ =>
+          case e => e.printStackTrace
         }
       }
     }
