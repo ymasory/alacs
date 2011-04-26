@@ -18,9 +18,11 @@ class ParserComponent(val global: Global) extends PluginComponent {
   class ParserPhase(prev: Phase) extends StdPhase(prev) {
     override def name = "alacs praser phase"
     override def apply(unit: CompilationUnit) {
-      val pat = new AlacsPattern001(global)
+      val pat1 = new AlacsPattern001(global)
+      val pat2 = new AlacsPattern002(global)
       for (tree <- unit.body) {
-        pat.analyzeTree(tree)
+        pat1 analyzeTree tree
+        pat2 analyzeTree tree
       }
     }
   }
