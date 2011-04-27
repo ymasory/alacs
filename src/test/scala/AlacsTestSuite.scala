@@ -33,7 +33,7 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   val run =
     runBugs("pattern" + BugPattern.bugNumFormatter.format(id), _: String)
 
-  def checkBug(bugs: List[Bug]) {
+  private def checkBug(bugs: List[Bug]) {
     assert(
       bugs.length === 1,
       "[expected exactly 1 bug but found " + bugs.length + "]")
@@ -44,21 +44,27 @@ trait AlacsPatternSuite extends AlacsFunSuite {
       bugId + "]")
   }
 
-  def checkNil(bugs: List[Bug]) {
+  private def checkNil(bugs: List[Bug]) {
     assert (
       bugs.length === 0,
       "[expected 0 bugs but found " + bugs.length + "]")
   }
+  
+  def positive(desc: String, file: String): Unit =
+    positive(desc, file, false)
 
-  def positive(desc: String, file: String, pend: Boolean = false) {
+  def positive(desc: String, file: String, pend: Boolean) {
     test(desc) {
       if (pend) pending
       val bugs: List[Bug] = run(file)
       checkBug(bugs)
     }
   }
+  
+  def negative(desc: String, file: String): Unit =
+    negative(desc, file, false)
 
-  def negative(desc: String, file: String, pend: Boolean = false) {
+  def negative(desc: String, file: String, pend: Boolean) {
     test(desc) {
       if (pend) pending
       val bugs: List[Bug] = run(file)
