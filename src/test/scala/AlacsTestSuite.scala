@@ -23,7 +23,12 @@ trait AlacsFunSuite extends FunSuite {
 
 trait AlacsPatternSuite extends AlacsFunSuite {
 
-  val id: Int
+  val id = {
+    val TestNum = """.*AlacsPattern(\d+).*""".r
+    this.getClass.getName match {
+      case TestNum(num) => num.toInt
+    }
+  }
 
   val run =
     runBugs("pattern" + BugPattern.bugNumFormatter.format(id), _: String)
@@ -44,18 +49,18 @@ trait AlacsPatternSuite extends AlacsFunSuite {
       bugs.length === 0,
       "[expected 0 bugs but found " + bugs.length + "]")
   }
-  
+
   def positive(desc: String, file: String) {
-	test(desc) {
-	  val bugs: List[Bug] = run(file)
-	  checkBug(bugs)
-	}
+    test(desc) {
+      val bugs: List[Bug] = run(file)
+      checkBug(bugs)
+    }
   }
-  
+
   def negative(desc: String, file: String) {
-	test(desc) {
-	  val bugs: List[Bug] = run(file)
-	  checkNil(bugs);
-	}
+    test(desc) {
+      val bugs: List[Bug] = run(file)
+      checkNil(bugs);
+    }
   }
 }
