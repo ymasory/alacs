@@ -50,15 +50,17 @@ trait AlacsPatternSuite extends AlacsFunSuite {
       "[expected 0 bugs but found " + bugs.length + "]")
   }
 
-  def positive(desc: String, file: String) {
+  def positive(desc: String, file: String, pend: Boolean = false) {
     test(desc) {
+      if (pend) pending
       val bugs: List[Bug] = run(file)
       checkBug(bugs)
     }
   }
 
-  def negative(desc: String, file: String) {
+  def negative(desc: String, file: String, pend: Boolean = false) {
     test(desc) {
+      if (pend) pending
       val bugs: List[Bug] = run(file)
       checkNil(bugs);
     }
