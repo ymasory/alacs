@@ -6,5 +6,5 @@ class AlacsPattern002Tests extends AlacsPatternSuite {
   positive("div by hex 0", "DivBy0Hex")
   positive("mod 0", "Mod0", true)
 
-  negative("div by 1", "DivByOne")
+  negative("div by 1", "DivBy1")
 }

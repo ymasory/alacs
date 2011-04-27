@@ -1,7 +1,5 @@
 package com.github.alacs
 
-import org.scalatest.FunSuite
-
 class PluginTestTests extends AlacsFunSuite {
 
   val run = {runAll("test-tests", _: String)}
