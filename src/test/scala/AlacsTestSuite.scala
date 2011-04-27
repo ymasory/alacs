@@ -57,7 +57,7 @@ trait AlacsPatternSuite extends AlacsFunSuite {
           fail("[WRONG BUG: expected to get a bug with id " + id +
                " but got one with id " + bugId + "]")
       }
-      val explanation =  "expected exactly 1 bug but found " + bugs.length + "]"
+      val explanation = "expected exactly 1 bug but found " + bugs.length + "]"
       if (numBugs == 0)
         fail("[FALSE NEGATIVE: " + explanation)
       else if (numBugs > 1)
