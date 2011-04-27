@@ -4,7 +4,7 @@ import scala.tools.nsc.Global
 
 import com.github.alacs.{Bug, BugInfo, BugPattern}
 
-class AlacsPatter003(global: Global) extends PatternDetector(global) {
+class AlacsPattern003(global: Global) extends PatternDetector(global) {
   import global._
 
   override val pattern = BugPattern(3, BugInfo("calculating mod 1"))
@@ -12,7 +12,7 @@ class AlacsPatter003(global: Global) extends PatternDetector(global) {
   override def analyzeTree(tree: GTree) = {
     val bug = Bug(pattern, tree.pos)
     tree match {
-      case _ => report(bug)
+      case _ => None//report(bug)
     }
   }
 }

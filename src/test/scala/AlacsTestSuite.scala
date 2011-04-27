@@ -1,6 +1,8 @@
-package com.github.alacs
+package com.github.alacs.test
 
 import org.scalatest.FunSuite
+
+import com.github.alacs._
 
 trait AlacsFunSuite extends FunSuite {
 

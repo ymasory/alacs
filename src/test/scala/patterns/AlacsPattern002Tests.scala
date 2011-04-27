@@ -1,4 +1,4 @@
-package com.github.alacs
+package com.github.alacs.test
 
 class AlacsPattern002Tests extends AlacsPatternSuite {
 

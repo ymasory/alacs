@@ -18,7 +18,7 @@ class ParserComponent(val global: Global) extends PluginComponent {
   class ParserPhase(prev: Phase) extends StdPhase(prev) {
     import java.lang.reflect.Constructor
 
-    override def name = "alacs praser phase"
+    override def name = "alacs parser phase"
     override def apply(unit: CompilationUnit) {
 
       val patterns: List[Constructor[PatternDetector]] =

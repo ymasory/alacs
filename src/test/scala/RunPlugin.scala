@@ -1,8 +1,10 @@
-package com.github.alacs
+package com.github.alacs.test
 
 import scala.tools.nsc.{ Global, Settings }
 import scala.tools.nsc.reporters.{ Reporter, StoreReporter }
 import java.io.{ File, StringWriter, PrintWriter }
+
+import com.github.alacs._
 
 object RunPlugin {
 

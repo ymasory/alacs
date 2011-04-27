@@ -1,4 +1,6 @@
-package com.github.alacs
+package com.github.alacs.test
+
+import com.github.alacs._
 
 class PluginTestTests extends AlacsFunSuite {
 
