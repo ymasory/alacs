@@ -1,3 +1,3 @@
-object DivByOne {
+object DivBy1 {
   1/1
 }

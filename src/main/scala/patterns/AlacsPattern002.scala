@@ -13,6 +13,7 @@ class AlacsPattern002(global: Global) extends PatternDetector(global) {
     val bug = Bug(pattern, tree.pos)
     tree match {
       case Apply(Select(_, nme.DIV), List(Literal(Constant(0)))) => report(bug)
+      case Apply(Select(_, nme.MOD), List(Literal(Constant(0)))) => report(bug)
       case _ => None
     }
   }
