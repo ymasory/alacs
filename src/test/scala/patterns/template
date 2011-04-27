@@ -4,14 +4,6 @@ import org.scalatest.FunSuite
 
 class AlacsPatternXXXTests extends AlacsPatternSuite {
 
-  override val id = XXX
-
-  test("positive example") {
-    val bugs: List[Bug] = run("DivByZeroHex")
-    check(bugs)
-  }
-
-  test("negative example") {
-    expect(Nil) { run("DivByOne") }
-  }
+  positive("positive example", "File")
+  negative("negative example", "File")
 }
