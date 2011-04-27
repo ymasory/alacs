@@ -12,7 +12,7 @@ class AlacsPatter003(global: Global) extends PatternDetector(global) {
   override def analyzeTree(tree: GTree) = {
     val bug = Bug(pattern, tree.pos)
     tree match {
-      case _ => None
+      case _ => report(bug)
     }
   }
 }

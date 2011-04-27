@@ -33,23 +33,6 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   val run =
     runBugs("pattern" + BugPattern.bugNumFormatter.format(id), _: String)
 
-  private def checkBug(bugs: List[Bug]) {
-    assert(
-      bugs.length === 1,
-      "[expected exactly 1 bug but found " + bugs.length + "]")
-    val bugId = bugs(0).pat.bugId
-    assert(
-      bugId === id,
-      "[expected to get a bug with id " + id + " but got one with id " +
-      bugId + "]")
-  }
-
-  private def checkNil(bugs: List[Bug]) {
-    assert (
-      bugs.length === 0,
-      "[expected 0 bugs but found " + bugs.length + "]")
-  }
-  
   def positive(desc: String, file: String): Unit =
     positive(desc, file, false)
   
@@ -59,12 +42,25 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   def positive(desc: String, file: String, pend: Boolean): Unit =
     positive(desc, file, pend, run)
 
+  def atest(desc: String)(thunk: => Any) =
+    test("Alacs" + BugPattern.bugNumFormatter.format(id) + ": " + desc)(thunk)
+    
   def positive(desc: String, file: String, pend: Boolean,
                runFunc: String => List[Bug]) {
-    test(desc) {
+    atest(desc) {
       if (pend) pending
       val bugs: List[Bug] = runFunc(file)
-      checkBug(bugs)
+      val numBugs = bugs.length
+      if (numBugs > 0) {
+      val bugId = bugs(0).pat.bugId
+        if (bugId != id)
+          fail("[WRONG BUG: expected to get a bug with id " + id +
+               " but got one with id " + bugId + "]")
+      }
+      if (numBugs == 0)
+        fail("[FALSE NEGATIVE: expected exactly 1 bug but found " + bugs.length + "]")
+      else if (numBugs > 1)
+        fail("[FALSE POSITIVES: expected exactly 1 bug but found " + bugs.length + "]")
     }
   }
   
@@ -79,10 +75,12 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   
   def negative(desc: String, file: String, pend: Boolean,
                runFunc: String => List[Bug]) {
-    test(desc) {
+    atest(desc) {
       if (pend) pending
       val bugs: List[Bug] = runFunc(file)
-      checkNil(bugs);
+      assert (
+        bugs.length === 0,
+        "[FALSE POSITIVE: expected 0 bugs but found " + bugs.length + "]")
     }
   }
 }
