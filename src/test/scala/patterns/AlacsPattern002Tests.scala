@@ -1,27 +1,12 @@
 package com.github.alacs
 
-import org.scalatest.FunSuite
-
 class AlacsPattern002Tests extends AlacsPatternSuite {
 
   override val id = 2
 
-  test("div by 0") {
-    val bugs: List[Bug] = run("DivBy0")
-    checkBug(bugs)
-  }
+  positive("div by 0", "DivBy0")
+  positive("div by hex 0", "DivBy0Hex")
+  positive("mod 0", "Mod0")
 
-  test("div by hex 0") {
-    val bugs: List[Bug] = run("DivBy0Hex")
-    checkBug(bugs)
-  }
-
-  test("div by 1") {
-    expect(Nil) { run("DivByOne") }
-  }
-
-  test("mod 0") {
-    val bugs: List[Bug] = run("Mod0")
-    checkBug(bugs)
-  }
+  negative("div by 1", "DivByOne")
 }

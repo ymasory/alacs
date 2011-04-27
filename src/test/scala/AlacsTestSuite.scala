@@ -2,9 +2,7 @@ package com.github.alacs
 
 import org.scalatest.FunSuite
 
-import java.io.File
-
-class AlacsFunSuite extends FunSuite {
+trait AlacsFunSuite extends FunSuite {
 
   val commonDir = "common"
 
@@ -45,5 +43,19 @@ trait AlacsPatternSuite extends AlacsFunSuite {
     assert (
       bugs.length === 0,
       "[expected 0 bugs but found " + bugs.length + "]")
+  }
+  
+  def positive(desc: String, file: String) {
+	test(desc) {
+	  val bugs: List[Bug] = run(file)
+	  checkBug(bugs)
+	}
+  }
+  
+  def negative(desc: String, file: String) {
+	test(desc) {
+	  val bugs: List[Bug] = run(file)
+	  checkNil(bugs);
+	}
   }
 }
