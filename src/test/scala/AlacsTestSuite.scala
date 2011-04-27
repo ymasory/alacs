@@ -52,11 +52,18 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   
   def positive(desc: String, file: String): Unit =
     positive(desc, file, false)
+  
+  def positiveCommon(desc: String, file: String): Unit =
+    positive(desc, file, false, commonRunBugs)
 
-  def positive(desc: String, file: String, pend: Boolean) {
+  def positive(desc: String, file: String, pend: Boolean): Unit =
+    positive(desc, file, pend, run)
+
+  def positive(desc: String, file: String, pend: Boolean,
+               runFunc: String => List[Bug]) {
     test(desc) {
       if (pend) pending
-      val bugs: List[Bug] = run(file)
+      val bugs: List[Bug] = runFunc(file)
       checkBug(bugs)
     }
   }
@@ -64,10 +71,17 @@ trait AlacsPatternSuite extends AlacsFunSuite {
   def negative(desc: String, file: String): Unit =
     negative(desc, file, false)
 
-  def negative(desc: String, file: String, pend: Boolean) {
+  def negativeCommon(desc: String, file: String) =
+    negative(desc, file, false, commonRunBugs)
+    
+  def negative(desc: String, file: String, pend: Boolean): Unit =
+    negative(desc, file, pend, run)
+  
+  def negative(desc: String, file: String, pend: Boolean,
+               runFunc: String => List[Bug]) {
     test(desc) {
       if (pend) pending
-      val bugs: List[Bug] = run(file)
+      val bugs: List[Bug] = runFunc(file)
       checkNil(bugs);
     }
   }
