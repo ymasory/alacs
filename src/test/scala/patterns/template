@@ -1,7 +1,5 @@
 package com.github.alacs
 
-import org.scalatest.FunSuite
-
 class AlacsPatternXXXTests extends AlacsPatternSuite {
 
   positive("positive example", "File")
