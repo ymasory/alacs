@@ -1,6 +1,7 @@
 import sbt._
+import de.element34.sbteclipsify._
 
-class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Exec {
+class AlacsProject(info: ProjectInfo) extends DefaultProject(info) with Eclipsify {
   
   //deployment
   override def managedStyle = ManagedStyle.Maven
