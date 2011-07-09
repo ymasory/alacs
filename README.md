@@ -1,5 +1,7 @@
 # Alacs - Bug finder for Scala #
 
+**NOTE** Alacs is not currently being developed by Yuvi, as all my effort has shifted to [qualac](https://github.com/quala/qualac). However, 95% of the code base here is ready to add bug rules. In fact there are alaready several in place. If you'd like to work on Alacs, shoot me an email and I'd be glad to help.
+
 ## Goals ##
 The aim is to provide a tool for finding defects in Scala tools by analyzing ASTs in compilation. Think [FindBugs](http://findbugs.sourceforge.net/) for Scala.
 
